@@ -62,7 +62,6 @@ const XPPlayer: React.FC = () => {
     audioCtxRef.current = audioCtx;
     analyserRef.current = analyser;
 
-    // Setup gain node for equalizer adjustments
     gainNodeRef.current = audioCtx.createGain();
     source.connect(gainNodeRef.current);
     gainNodeRef.current.connect(analyser);
@@ -141,8 +140,7 @@ const XPPlayer: React.FC = () => {
 
   const adjustEqualizer = (newEqualizer: number[]) => {
     if (gainNodeRef.current) {
-      // Simple equalizer with frequency bands
-      gainNodeRef.current.gain.value = newEqualizer[0]; // Low frequencies
+      gainNodeRef.current.gain.value = newEqualizer[0];
     }
   };
 
@@ -165,7 +163,6 @@ const XPPlayer: React.FC = () => {
     adjustEqualizer(presetValues);
   };
 
-  // Playlist Reordering using Drag and Drop
   const handleDragStart = (index: number) => {
     setCurrentTrackIndex(index);
   };
